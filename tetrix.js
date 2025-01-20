@@ -1,3 +1,6 @@
+
+
+
 document.addEventListener('DOMContentLoaded', (event) => {
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
@@ -89,7 +92,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     function main() {
         const tabuleiro = novoTabuleiro();
         let peca = formas[Math.floor(Math.random() * formas.length)];
-        let posicao = [larguraJogo / 2 - 1, 0];
+        let posicao = [Math.floor(larguraJogo / 2) - 1, 0];
         let score = 0;
 
         function atualizar() {
@@ -114,7 +117,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
                 score += limparLinhas(tabuleiro) * 100;
                 peca = formas[Math.floor(Math.random() * formas.length)];
-                posicao = [larguraJogo / 2 - 1, 0];
+                posicao = [Math.floor(larguraJogo / 2) - 1, 0];
 
                 if (colisao(tabuleiro, peca, posicao)) {
                     alert('Game Over');
@@ -123,6 +126,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            desenharGrade();
+            desenharPeca(peca, posicao);
 
             requestAnimationFrame(atualizar);
         }
